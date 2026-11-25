@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+spring:
+  application:
+    name: auto-repair-workshop
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/new_045?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: "123456"
+    hikari:
+      maximum-pool-size: 8
+      minimum-idle: 2
+  servlet:
+    multipart:
+      # 海报/现场/核验图片单文件 10MB，单次请求 30MB
+      max-file-size: 10MB
+      max-request-size: 30MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# 业务侧配置：上传根目录与 JWT
+app:
+  upload-dir: ./uploads
+  jwt-secret: auto-repair-workshop-graduation-project-2026-secret-key-please-change
+  jwt-expire-hours: 12
+  login-fail-limit: 5
+  login-lock-minutes: 10
+
+logging:
+  level:
+    com.grad.repair: info
